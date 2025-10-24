@@ -1,0 +1,28 @@
+/******************************************************************************
+Regex	Meaning	Example
+\s	single whitespace	"a b" → "ab"
+\s+	one or more whitespaces	"a b" → "ab"
+\s*	zero or more whitespaces	"a b" → "ab" (also matches if no space)
+\S	non-whitespace character	opposite of \s
+
+*******************************************************************************/
+import java.util.stream.*;
+import java.util.Scanner; 
+public class Main
+{
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		 Boolean isPalindrome=false;
+		System.out.println("Enter a String for Checking palindrome ");
+		String s=sc.nextLine().toLowerCase();
+		if (s == null || s.trim().isEmpty()) {
+		    System.out.println("Given String is Palindrome = "+isPalindrome);
+            return ;
+        }
+		String str=s.replaceAll("\\s+","");
+	     isPalindrome=IntStream.range(0,str.length()/2)
+	                          .allMatch(i->str.charAt(i)==str.charAt(str.length()-i-1));
+	    System.out.println("Given String is Palindrome = "+isPalindrome);
+	}
+}
